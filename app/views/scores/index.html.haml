@@ -1,15 +1,25 @@
 %h1 Our progress in Testing
 
+/ - @members.each do |member|
+/   .score{:style => "overflow: hidden; margin-bottom: 20px; padding: 20px; background-color: #f0f0f0; box-shadow: rgba(0,0,0,0.2) 0 1px 2px; text-shadow: #FFF 0 1px 0px"}
+/   
+/     .person{:style => "margin-bottom: 10px; overflow: hidden;"}
+/       = image_tag "https://secure.gravatar.com/avatar/#{member[:gravatar]}?s=64", :style => "float: left; margin-right: 10px;"
+/       %span.name{:style => "font-weight: bold; display: block; font-size: 20px; line-height: 30px;"}= member[:name]
+/       %span.level{:style => "font-size: 14px; color: #444;"} Level: #{member[:level]}
+/   
+/     - if member[:progress]
+/       .progress_bar{:style => "width: 100%; background-color: #444; height: 20px; box-shadow: #000 0 0 4px inset;"}
+/         .next_level{:style => "text-align: right; color: #aaa; font-size: 13px; margin-top: -20px; margin-right: 5px; float: right;"}
+/           Next: #{member[:next]}
+/         %div{:style => "width: #{member[:progress]}%; background-color: #090; height: 20px; text-align: right; text-shadow: none; color: rgba(255,255,255,0.7); font-size: 11px; line-height: 20px;"}
+/           %span{:style => "margin-right: 5px;"}= member[:score]
+
 - @members.each do |member|
   .score{:style => "overflow: hidden; margin-bottom: 20px; padding: 20px; background-color: #f0f0f0; box-shadow: rgba(0,0,0,0.2) 0 1px 2px; text-shadow: #FFF 0 1px 0px"}
   
-    .person{:style => "margin-bottom: 10px; overflow: hidden;"}
-      = image_tag "https://secure.gravatar.com/avatar/#{member[:gravatar]}?s=64", :style => "float: left; margin-right: 10px;"
-      %span.name{:style => "font-weight: bold; display: block; font-size: 20px; line-height: 30px;"}= member[:name]
-      %span.level{:style => "font-size: 14px; color: #444;"} Level: #{member[:level]}
-  
-    - if member[:progress]
-      .progress_bar{:style => "width: 100%; background-color: #444; height: 20px; box-shadow: #000 0 0 4px inset;"}
-        .next_level{:style => "text-align: right; color: #aaa; font-size: 13px; margin-top: -20px; margin-right: 5px; float: right;"}
-          Next: #{member[:next]}
-        %div{:style => "width: #{member[:progress]}%; background-color: #090; height: 20px;"}
+    .person{:style => "overflow: hidden;"}
+      - if member[:score]
+        .score{:style => "float: right; font-weight: bold; font-size: 26px; line-height: 58px;"}= member[:score]
+      = image_tag "https://secure.gravatar.com/avatar/#{member[:gravatar]}?s=58", :style => "float: left; margin-right: 10px;"
+      %span.name{:style => "font-weight: bold; display: block; font-size: 20px; line-height: 58px;"}= member[:name]
